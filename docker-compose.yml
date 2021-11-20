@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  db:
+    build: 
+      context: ./db
+      dockerfile: Dockerfile-db
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+  app:
+    build: 
+      context: ./myapp
+      dockerfile: Dockerfile-app
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    restart: on-failure
+
