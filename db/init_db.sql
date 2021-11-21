@@ -2,9 +2,9 @@ CREATE TABLE User(
 	`uid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(60),
 	`email` VARCHAR(60),
-	`password` VARCHAR(60)
+	`password` VARCHAR(60),
 	`full_name` VARCHAR(120),
-	`phone_number` VARCHAR(60)
+	`phone_number` VARCHAR(60),
 	PRIMARY KEY (`uid`)
 );
 
