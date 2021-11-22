@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 New Listing
+  form(action='/add-new-listing' method='post')
+    p Title
+    input(type='text' name='title' required='')
+    p Price
+    input(type='number' name='price' required='')
+    br
+    br
+    label(for='type') Listing Type
+    br
+    br
+    select#type(name='listingType')
+      option(value='rental') Rental
+      option(value='sale') Sale
+    p Description
+    input(type='text' name='description')
+    p
+    input(type='submit')
