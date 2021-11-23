@@ -7,14 +7,14 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var mysql = require('mysql');
-var connection = mysql.createPool({
-  connectionLimit: 10,
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'password',
-  database: process.env.MYSQL_DATABASE || 'mydb'
-});
+// var mysql = require('mysql');
+// var connection = mysql.createPool({
+//   connectionLimit: 10,
+//   host: process.env.MYSQL_HOST || 'localhost',
+//   user: process.env.MYSQL_USER || 'root',
+//   password: process.env.MYSQL_PASSWORD || 'password',
+//   database: process.env.MYSQL_DATABASE || 'mydb'
+// });
 
 var app = express();
 
