@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.button {
+  border: solid black 2px;
+  text-decoration: none;
+  color: black;
+  padding: 10px 40px;
+  font-size: 18px;
+  background-color: #d3d3d354;
+}
+
+.button:hover {
+  background-color: lightgray;
+}
