@@ -35,10 +35,11 @@ router.get('/homepage', (req, res) => {
         });
     }
     else{
-      res.json({
-        success: true,
-        rows
-        });
+      res.sendFile(path.join(__dirname, '../views/home.html'));
+      // res.json({
+      //   success: true,
+      //   rows
+      //   });
     }
   });
 });
