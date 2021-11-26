@@ -7,6 +7,8 @@ var logger = require('morgan');
 var sessionRouter = require('./routes/session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var newListingRouter = require('./routes/new-listing');
+var addNewListingRouter = require('./routes/add-new-listing');
 
 // var mysql = require('mysql');
 // var connection = mysql.createPool({
@@ -32,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(sessionRouter)
 app.use('/index', indexRouter);
 app.use('/', usersRouter);
+app.use('/new-listing', newListingRouter);
+app.use('/add-new-listing', addNewListingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,4 +53,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports.app = app;
+// module.exports.con = con;
