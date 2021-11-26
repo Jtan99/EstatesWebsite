@@ -3,9 +3,10 @@ var router = express.Router();
 var addNewListing = require('/myapp/services/add-new-listing-service').addNewListing;
 
 /* POST add new listing. */
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
     var data = req.body;
-    addNewListing(data);
+    await addNewListing(data);
+    res.redirect('/')
 });
 
 module.exports = router;

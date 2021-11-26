@@ -3,6 +3,7 @@ extends layout
 block content
   h1 New Listing
   form(action='/add-new-listing' method='post')
+    h2 Basic Listing Information
     p Title
     input(type='text' name='title' required='')
     p Price
@@ -12,10 +13,50 @@ block content
     label(for='type') Listing Type
     br
     br
-    select#type(name='listingType')
+    select#type(name='listing_type')
       option(value='rental') Rental
       option(value='sale') Sale
     p Description
     input(type='text' name='description')
-    p
+
+    h2 Building
+    p Bathrooms
+    input(type='number', name='bathrooms' required='')
+    p Bedrooms
+    input(type='number', name='bedrooms' required='')
+    p Floor Space (Sqft)
+    input(type='number', name='floor_space')
+    p Building Type
+    input(type='text', name='building_type')
+    p Storeys
+    input(type='number', name='storeys')
+    p Appliances
+    input(type='text', name='appliances')
+
+    h2 Property
+    p Property Age (Years)
+    input(type='number', name='property_age')
+    p Annual Property Tax
+    input(type='number', name='annual_property_tax')
+    p Parking Type
+    input(type='text', name='parking_type')
+    p Amenities
+    input(type='text', name='amenities')
+
+    h2 Location
+    p Country
+    input(type='text', name='country' required='')
+    p Province/State
+    input(type='text', name='province_state' required='')
+    p Address
+    input(type='text', name='address' required='')
+    p Postal Code
+    input(type='text', name='postal_code' required='')
+    p 
     input(type='submit')
+
+//- Ideas for future
+//- 1. 'Next' button, 'back' button, and section title for each section, where a section is defined by each subheader
+//- i.e. basic info, building info, location, property info. This reduces odds of user being overwhelmed with fields.
+//- 2. Create a selection for the appliances, amenities, and parking type fields, so user cannot input garbage.
+//- 3. Use address lookup/maps API for location
