@@ -1,0 +1,7 @@
+- localhost:3000/ will redirect users to the login page localhost:3000/login
+- Users can register for an account which gets inserted in the database for logging in
+- username: admin password: admin are already inserted into the database
+- Users are redirected to the homepage after logging in which includes a navbar
+- Users can add a listing through the navbar sell link. Still needs to be worked on
+- Navbar has a dropdown menu for users to log out and get redirected to the login page
+- Working progress google maps api at url: http://localhost:3000/index/test-map
