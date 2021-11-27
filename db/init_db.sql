@@ -1,16 +1,59 @@
-CREATE TABLE User(
-	`uid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE Users(
+	`userid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(60),
 	`email` VARCHAR(60),
-	`password` VARCHAR(60)
-	`full_name` VARCHAR(120),
-	`phone_number` VARCHAR(60)
-	PRIMARY KEY (`uid`)
+	`password` VARCHAR(60),
+	`full_name` VARCHAR(60),
+	`role` VARCHAR(60),
+	PRIMARY KEY (`userid`)
 );
 
-INSERT INTO User(first_name, last_name, email, phone_number, notes) VALUES("user1", "user1@hotmail.com", "user1", "user1 test" "123-456-7890");
-INSERT INTO User(first_name, last_name, email, phone_number, notes) VALUES("user2", "user2@hotmail.com", "user2", "user2 test", "987-654-3210");
+INSERT INTO Users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
+
+CREATE TABLE building(
+  `buildingid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `bathrooms` INT NOT NULL,
+  `bedrooms` INT NOT NULL,
+  `floor_space` INT NULL,
+  `building_type` VARCHAR(60) NULL,
+  `storeys` INT NULL,
+  `appliances` VARCHAR(200) NULL,
+  PRIMARY KEY (`buildingid`)
+);
+
+CREATE TABLE property(
+  `propertyid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `property_age` INT NULL,
+  `annual_property_tax` DECIMAL(9,2) NULL,
+  `parking_type` VARCHAR(60) NULL,
+  `amenities` VARCHAR(200) NULL,
+  PRIMARY KEY (`propertyid`)
+);
+
+CREATE TABLE location(
+  `locationid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `country` VARCHAR(60) NOT NULL,
+  `province_state` VARCHAR(60) NOT NULL,
+  `address` VARCHAR(60) NOT NULL,
+  `postal_code` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`locationid`)
+);
+
+CREATE TABLE listing(
+	`listingid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+	`buildingid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`propertyid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`locationid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`title` VARCHAR(200) NOT NULL,
+	`price` INT NOT NULL,
+	`listing_type` VARCHAR(60) NOT NULL,
+	`description` VARCHAR(2000) NULL,
+	PRIMARY KEY (`listingid`),
+	FOREIGN KEY (`buildingid`) REFERENCES building(`buildingid`),
+	FOREIGN KEY (`propertyid`) REFERENCES property(`propertyid`),
+	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
+);
+
+INSERT INTO Users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
-
-flush privileges;
