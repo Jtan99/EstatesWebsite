@@ -8,8 +8,6 @@ CREATE TABLE Users(
 	PRIMARY KEY (`userid`)
 );
 
-INSERT INTO Users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
-
 CREATE TABLE building(
   `buildingid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
   `bathrooms` INT NOT NULL,
