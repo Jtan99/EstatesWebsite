@@ -1,48 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var currSession = require('/myapp/routes/session');
 
-var mysql = require('mysql');
-var connection = mysql.createPool({
-  connectionLimit: 10,
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'password',
-  database: process.env.MYSQL_DATABASE || 'mydb'
-});
-
-var sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.user_sid) {
-    console.log("no session will have to login first")
-    res.redirect("/homepage");
-  } else {
-    next();
-  }
-};
-
-router.get("/", sessionChecker, (req, res) => {
+router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
   res.redirect("/login");
 })
-
-/* GET users listing. */
-router.get('/homepage', (req, res) => {
-  console.log(req.session)
-  connection.query('SELECT * FROM Users' , (err, rows) => {
-    if(err){
-      res.json({
-        success: false,
-        err
-        });
-    }
-    else{
-      res.sendFile(path.join(__dirname, '../views/home.html'));
-      // res.json({
-      //   success: true,
-      //   rows
-      //   });
-    }
-  });
-});
 
 router.get('/login', (req,res) => {
   console.log(path.join(__dirname, '../views/login.html'))
@@ -53,7 +16,7 @@ router.post('/login', (req,res) => {
   var query = `SELECT full_name, role FROM Users WHERE username=? AND password=?`;
   var input = [req.body.username, req.body.password];
   console.log("req.body is", req.body);
-  connection.query(query, input , (err, user) => {
+  currSession.connection.query(query, input , (err, user) => {
     //here goes to homepage
     console.log(user)
     if (user.length == 0) {
@@ -92,7 +55,7 @@ router.post('/register', (req, res) =>{
     req.body.full_name,
     "regular"
   ];
-  connection.query(query, input , (err, user) => {
+  currSession.connection.query(query, input , (err, user) => {
     //here goes to homepage
     console.log(user)
     if (err) {
@@ -107,4 +70,3 @@ router.post('/register', (req, res) =>{
 });
 
 module.exports = router;
-module.exports.connection = connection;
