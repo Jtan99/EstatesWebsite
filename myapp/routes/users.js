@@ -7,7 +7,7 @@ router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
   res.redirect("/login");
 })
 
-router.get('/login', (req,res) => {
+router.get('/login', currSession.checkSessionLoggedIn, (req,res) => {
   console.log(path.join(__dirname, '../views/login.html'))
   res.sendFile(path.join(__dirname, '../views/login.html'));
 });
