@@ -14,7 +14,7 @@ router.get('/login', currSession.checkSessionLoggedIn, (req,res) => {
 });
 
 router.post('/login', (req,res) => {
-  var query = `SELECT full_name, role FROM Users WHERE username=? AND password=?`;
+  var query = `SELECT full_name, role FROM users WHERE username=? AND password=?`;
   var input = [req.body.username, req.body.password];
   console.log("req.body is", req.body);
   db.connection.query(query, input , (err, user) => {
@@ -47,7 +47,7 @@ router.get('/register', (req, res)=> {
 
 router.post('/register', (req, res) =>{
   var query = "INSERT " +
-    "INTO Users(username, email, password, full_name, role) " +
+    "INTO users(username, email, password, full_name, role) " +
     "VALUES(?,?,?,?,?)";
   var input = [
     req.body.username,
