@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE: mydb
       MYSQL_ROOT_PASSWORD: password
     restart: always
+    ports:
+      - "3306:3306"
   app:
     build: 
       context: ./myapp
