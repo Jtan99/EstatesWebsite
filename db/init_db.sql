@@ -1,4 +1,4 @@
-CREATE TABLE users(
+CREATE TABLE user(
 	`userid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(60),
 	`email` VARCHAR(60),
@@ -52,6 +52,6 @@ CREATE TABLE listing(
 	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
 );
 
-INSERT INTO users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
+INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';

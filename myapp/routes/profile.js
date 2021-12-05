@@ -7,7 +7,7 @@ var db = require('/myapp/routes/connection');
 router.get('/', currSession.checkSessionStatus, (req, res) => {
   res.render('profile');
 
-  db.connection.query('select * from users', (err, results) => {
+  db.connection.query('select * from user', (err, results) => {
     if (err) console.log('ERRN:', err.message)
     else 
     console.log('res', results)
