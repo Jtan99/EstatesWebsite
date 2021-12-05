@@ -1,5 +1,5 @@
 // var mysql = require('mysql');
-var db = require('/myapp/routes/session');
+var db = require('/myapp/routes/connection');
 
 function addNewListing(data) {
 

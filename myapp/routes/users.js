@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var currSession = require('/myapp/routes/session');
+var db = require('/myapp/routes/connection');
 
 router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
   res.redirect("/login");
@@ -16,7 +17,7 @@ router.post('/login', (req,res) => {
   var query = `SELECT full_name, role FROM Users WHERE username=? AND password=?`;
   var input = [req.body.username, req.body.password];
   console.log("req.body is", req.body);
-  currSession.connection.query(query, input , (err, user) => {
+  db.connection.query(query, input , (err, user) => {
     //here goes to homepage
     console.log(user)
     if (user.length == 0) {
@@ -55,7 +56,7 @@ router.post('/register', (req, res) =>{
     req.body.full_name,
     "regular"
   ];
-  currSession.connection.query(query, input , (err, user) => {
+  db.connection.query(query, input , (err, user) => {
     //here goes to homepage
     console.log(user)
     if (err) {

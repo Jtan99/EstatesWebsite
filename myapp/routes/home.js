@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var currSession = require('/myapp/routes/session');
+var db = require('/myapp/routes/connection');
 
 /* GET user homepage. */
 router.get('/', currSession.checkSessionStatus, (req, res) => {
   console.log(req.session);
-  currSession.connection.query('SELECT * FROM Users' , (err, rows) => {
+  db.connection.query('SELECT * FROM Users' , (err, rows) => {
     if(err){
       res.json({
         success: false,
