@@ -1,7 +1,6 @@
 var express = require('express');
 var session = require("express-session");
 var router = express.Router();
-var mysql = require('mysql');
 
 router.use(
   session({
@@ -20,15 +19,6 @@ router.use((req, res, next) => {
     res.clearCookie("user_sid");
   }
   next();
-});
-
-// database connection
-var connection = mysql.createPool({
-  connectionLimit: 10,
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'password',
-  database: process.env.MYSQL_DATABASE || 'mydb'
 });
 
 // Redirect user to homepage if already logged in
@@ -52,6 +42,5 @@ var checkSessionStatus = (req, res, next) => {
 };
 
 module.exports = router;
-module.exports.connection = connection;
 module.exports.checkSessionLoggedIn = checkSessionLoggedIn;
 module.exports.checkSessionStatus = checkSessionStatus;
