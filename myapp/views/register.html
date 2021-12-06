@@ -3,55 +3,77 @@
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
     <script type="text/javascript" src="/javascripts/registerValidation.js"></script>
     <title>Register</title>
 </head>
-<body>
-    <h1>Register A New Account</h1>
+<body class = "container">
     <form 
         action="/register"
         method="post"
         onsubmit="return (validate(
             document.getElementById('password').value,
             document.getElementById('password2').value))"
+        class = "login-form"
     >
-        <input 
-            type="text" 
+        <h1>Create an Account</h1>
+        <div class ="flex-input">
+            <label for="">Email:</label>
+            <input 
+            type="email" 
             id="email" 
             name="email" 
             placeholder="Enter Email" 
             required
-        ><br/>
-        <input 
+        >
+        </div>
+        <div class ="flex-input">
+            <label for="">Username:</label>
+            <input 
             type="text" 
             id="username" 
             name="username" 
             placeholder="Enter Username" 
             required
-        ><br/>
-        <input 
-            type="text" 
+        >
+        </div>
+        <div class ="flex-input">
+            <label for="">Password:</label>
+            <input 
+            type="password" 
             id="password" 
             name="password" 
             placeholder="Enter Password" 
             required
-        ><br/>
-        <input 
-            type="text" 
+        >
+        </div>
+        <div class ="flex-input">
+            <label for="">Confirm Password:</label>
+            <input 
+            type="password" 
             id="password2" 
             name="password2" 
             placeholder="Confirm Password" 
             required
-        ><br/>
-        <input 
+        >
+        </div>
+        <div class ="flex-input">
+            <label for="">Full Name:</label>
+            <input 
             type="text" 
             id="full_name" 
             name="full_name" 
             placeholder="Enter Full Name" 
             required
-        ><br/>
-        <button type="submit">Submit </button>
-    </form><br/>
-    <a href="/login">Already Registered? Click Here to Login</a>
+        >
+        </div>
+        <div>
+            <button type="submit">Submit </button>
+        </div>
+        <div class = "link-container">
+            <a href="/login">Already Registered? Click Here to Login</a>
+        </div>
+    </form>
+    
 </body>
 </html>
