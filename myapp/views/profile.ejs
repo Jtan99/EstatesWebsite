@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
-    <title>homepage</title>
+    <title>profile</title>
 </head>
 <body>
     <header>
@@ -19,7 +19,7 @@
         </nav> 
         
         <div class="dropdown">
-            <button class="dropbtn">Username 
+            <button class="dropbtn"><%=full_name%> 
               <i class="arrow down"></i>
             </button>
             <div class="dropdown-content">
@@ -28,7 +28,17 @@
             </div>
         </div>
     </header>
+    
+    <label>Username: <%= username %></label> <br/>
 
-	
+    <label>Email: <%= email %></label> <br/>
+
+    <label>Password: <%= password %></label> <br/>
+
+    <label>Full Name: <%= full_name %></label> <br/>
+
+    <label>Role: <%= role %></label> <br/>
+
+	<a href="/edit-profile">Click to Edit Profile</a>
 </body>
 </html>
