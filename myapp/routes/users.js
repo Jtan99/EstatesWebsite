@@ -9,12 +9,13 @@ router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
 })
 
 router.get('/login', currSession.checkSessionLoggedIn, (req,res) => {
-  console.log(path.join(__dirname, '../views/login.html'))
-  res.sendFile(path.join(__dirname, '../views/login.html'));
+  // console.log(path.join(__dirname, '../views/login.html'))
+  // res.sendFile(path.join(__dirname, '../views/login.html'));
+  res.render('login');
 });
 
 router.post('/login', (req,res) => {
-  var query = `SELECT full_name, role FROM user WHERE username=? AND password=?`;
+  var query = `SELECT username FROM user WHERE username=? AND password=?`;
   var input = [req.body.username, req.body.password];
   console.log("req.body is", req.body);
   db.connection.query(query, input , (err, user) => {
@@ -42,7 +43,8 @@ router.get("/logout", (req, res) => {
 });
 
 router.get('/register', (req, res)=> {
-  res.sendFile(path.join(__dirname, '../views/register.html'));
+  // res.sendFile(path.join(__dirname, '../views/register.html'));
+  res.render('register');
 });
 
 router.post('/register', (req, res) =>{

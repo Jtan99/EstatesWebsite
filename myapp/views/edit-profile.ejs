@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css" />
-    <title>profile</title>
+    <title>edit profile</title>
 </head>
 <body>
     <header>
@@ -29,25 +29,30 @@
             </div>
         </div>
     </header>
-    <div class="container">
+    
+    <form action="/edit-profile" method="POST" class = "container">
         <div class = "login-form">
-            <h1>User Profile</h1>
-            <div class ="flex-center">
-                <label>Username: <%= username %></label>
+            <div class ="flex-input">
+                <label for="" class = "labels">Full Name:</label>
+                <input type="text" name="full_name" value = "<%= full_name %>" placeholder="Enter full name" id ="full_name" required>
             </div>
-            <div class ="flex-center">
-                <label>Email: <%= email %></label>
+            <div class ="flex-input">
+                <label for="" class = "labels">Email:</label>
+                <input type="email" name="email" value = "<%= email %>" placeholder="Enter email" id = "email" required>
             </div>
-            <div class ="flex-center">
-                <label>Full Name: <%= full_name %></label>
+            <div class ="flex-input">
+                <label for="" class = "labels">Password:</label>
+                <input type="password" name="password" value = "<%= password %>" placeholder="Enter password" id ="password" required>
             </div>
-            <div class ="flex-center">
-                <label>Role: <%= role %></label>
-            </div>            
-            <div class = "link-container3">
-                <a href="/edit-profile">Click to Edit Profile</a>
+            <div>
+                <button type="submit">Update User Details</button>
+            </div>
+            <div class = "link-container2">
+                <a href="/profile">Cancel Editing Profile</a>
             </div>
         </div>
-    </div>
+    </form>
+
+	
 </body>
 </html>

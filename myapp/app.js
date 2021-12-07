@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var newListingRouter = require('./routes/new-listing');
 var addNewListingRouter = require('./routes/add-new-listing');
 var viewProfileRouter = require('./routes/profile');
+var viewEditProfileRouter = require('./routes/edit-profile');
 var viewHomePageRouter = require('./routes/home');
 
 var app = express();
@@ -30,6 +31,7 @@ app.use('/', usersRouter);
 app.use('/new-listing', newListingRouter);
 app.use('/add-new-listing', addNewListingRouter);
 app.use('/profile', viewProfileRouter);
+app.use('/edit-profile', viewEditProfileRouter);
 app.use('/homepage', viewHomePageRouter);
 
 // catch 404 and forward to error handler

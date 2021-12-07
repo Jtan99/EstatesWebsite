@@ -7,7 +7,9 @@ var db = require('/myapp/routes/connection');
 /* GET user homepage. */
 router.get('/', currSession.checkSessionStatus, (req, res) => {
   console.log(req.session);
-  db.connection.query('SELECT * FROM user' , (err, rows) => {
+  var query = `SELECT * FROM user WHERE username=?`;
+  var input = [req.session.user[0]["username"]];
+  db.connection.query(query, input, (err, rows) => {
     if(err){
       res.json({
         success: false,
@@ -15,7 +17,9 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
         });
     }
     else{
-      res.sendFile(path.join(__dirname, '../views/home.html'));
+      var user_info = rows[0];
+      res.render('home', {full_name: user_info.full_name});
+      // res.sendFile(path.join(__dirname, '../views/home.html'));
       // res.json({
       //   success: true,
       //   rows

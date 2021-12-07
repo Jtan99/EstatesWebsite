@@ -1,10 +1,10 @@
 CREATE TABLE user(
 	`userid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(60),
-	`email` VARCHAR(60),
-	`password` VARCHAR(60),
-	`full_name` VARCHAR(60),
-	`role` VARCHAR(60),
+	`username` VARCHAR(60) NOT NULL UNIQUE,
+	`email` VARCHAR(60) NOT NULL,
+	`password` VARCHAR(60) NOT NULL,
+	`full_name` VARCHAR(60) NOT NULL,
+	`role` VARCHAR(60) NOT NULL,
 	PRIMARY KEY (`userid`)
 );
 
