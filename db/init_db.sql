@@ -32,6 +32,7 @@ CREATE TABLE location(
   `locationid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
   `country` VARCHAR(60) NOT NULL,
   `province_state` VARCHAR(60) NOT NULL,
+  `city` VARCHAR(60) NOT NULL,
   `address` VARCHAR(60) NOT NULL,
   `postal_code` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`locationid`)

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
     <title>homepage</title>
 </head>
 <body>
@@ -33,6 +34,20 @@
         <input id = "searchBar" type="text" placeholder="Search for a Listing">
         <button id="searchBtn">Search</button>
     </div>
+
+    <div id = "latest-listings">Latest Listings 
+        <div>
+            <%if (latestLocations) {%>
+                <%=latestLocations[0].address%>
+                <%=latestLocations[0].city%>,
+                <%=latestLocations[0].province_state%>,
+                <%=latestLocations[0].country%>
+            <%}%>
+            <%if (latestListings) {%>
+                <%=latestListings[0].price%>
+            <%}%>
+        </div
+    ></div>
 
 	
 </body>

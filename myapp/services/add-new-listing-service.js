@@ -67,8 +67,8 @@ async function addNewListing(data){
     var propertySql = 'INSERT INTO property (property_age, annual_property_tax, parking_type, amenities) VALUES (?, ?, ?, ?)'
     var propertyValues = [data.property_age, data.annual_property_tax, data.parking_type, data.amenities];
 
-    var locationSql = 'INSERT INTO location (country, province_state, address, postal_code) VALUES (?, ?, ?, ?)'
-    var locationValues = [data.country, data.province_state, data.address, data.postal_code];
+    var locationSql = 'INSERT INTO location (country, province_state, city, address, postal_code) VALUES (?, ?, ?, ?, ?)'
+    var locationValues = [data.country, data.province_state, data.city, data.address, data.postal_code];
 
     var insertIds = [];
 
