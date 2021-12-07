@@ -1,6 +1,4 @@
-const { query } = require('express');
-const util = require('util');
-var db = require('/myapp/routes/users');
+var db = require('/myapp/routes/connection');
 
 populateBuildingTable = (buildingSql, buildingValues, insertIds) => {
     return new Promise((resolve, reject) => {
