@@ -2,9 +2,33 @@
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/new-listing-style.css">
   </head>
   <body>
+    <header>
+      <img class="logo" src="images/logo.png" alt="logo">
+      <nav>
+          <ul class="nav_links">
+              <li><a href="/homepage">Buy</a></li>
+              <li><a href="/new-listing">Sell</a></li>
+              <li><a href="/chat">Chat</a></li>
+              <li><a href="/findroommate">Find Roommates</a></li>
+          </ul>
+      </nav> 
+      
+      <div class="dropdown">
+          <button class="dropbtn"><%=full_name%> 
+            <i class="arrow down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href='/profile'>View Profile</a>
+              <a id="logout" href='/logout'>Log Out</a>
+          </div>
+      </div>
+  </header>
+
+
     <h1>New Listing</h1>
     <form action="/add-new-listing" method="post">
       <h2>Basic Listing Information</h2>
