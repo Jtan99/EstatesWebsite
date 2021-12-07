@@ -11,8 +11,8 @@
 }
 
 .login-form {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: lightgray;
     padding: 30px;
     width: 75%;
     border-radius: 5px;
@@ -34,11 +34,13 @@ h1 {
     display: flex;
     text-decoration: underline;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 h2 {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 input[type="text"],

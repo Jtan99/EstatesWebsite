@@ -11,8 +11,8 @@
 }
 
 .login-form {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: lightgray;
     padding: 10px;
     width: 600px;
     border-radius: 5px;
