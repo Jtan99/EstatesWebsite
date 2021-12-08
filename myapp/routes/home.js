@@ -55,8 +55,8 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
   
   async function runHomepageFunctions(query, input) {
   
-    var latestLocationsSql = 'SELECT * FROM location WHERE locationid = (SELECT max(locationid) FROM location)';
-    var latestListingsSql = 'SELECT * FROM listing WHERE listingid = (SELECT max(listingid) FROM listing)';
+    var latestLocationsSql = 'SELECT * FROM location ORDER BY locationid DESC LIMIT 3';
+    var latestListingsSql = 'SELECT * FROM listing ORDER BY listingid DESC LIMIT 3';
     try {
       var latestLocations = await getLatestLocations(latestLocationsSql);
       var latestListings = await getlatestListings(latestListingsSql);
@@ -69,7 +69,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
     }
   }
 
-  var result = runHomepageFunctions(query, input);
+  runHomepageFunctions(query, input);
 });
 
 module.exports = router;

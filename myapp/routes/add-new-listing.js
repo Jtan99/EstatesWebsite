@@ -4,9 +4,16 @@ var addNewListing = require('/myapp/services/add-new-listing-service').addNewLis
 
 
 /* POST add new listing. */
+
+addNewListingCallback = (data) => {
+    return new Promise((resolve, reject) => {
+        resolve(addNewListing(data));
+    });
+};
+
 router.post('/', async function(req, res, next) {
-    var data = req.body;
-    addNewListing(data);
+    var data = req.body
+    await addNewListingCallback(data)
     res.redirect('/')
 });
 
