@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(sessionRouter)
 app.use('/index', indexRouter);
 app.use('/', usersRouter);
-app.use('/listing', newListingRouter);
+app.use('/listing', listingRouter);
 app.use('/profile', viewProfileRouter);
 app.use('/edit-profile', viewEditProfileRouter);
 app.use('/homepage', viewHomePageRouter);
