@@ -12,6 +12,7 @@ var addNewListingRouter = require('./routes/add-new-listing');
 var viewProfileRouter = require('./routes/profile');
 var viewEditProfileRouter = require('./routes/edit-profile');
 var viewHomePageRouter = require('./routes/home');
+var db = require('./routes/connection');
 
 var app = express();
 
@@ -51,4 +52,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports.app = app;
-// module.exports.con = con;

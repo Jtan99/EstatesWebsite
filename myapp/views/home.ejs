@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
     <title>homepage</title>
 </head>
 <body>
@@ -32,6 +33,44 @@
     <div id = "search">
         <input id = "searchBar" type="text" placeholder="Search for a Listing">
         <button id="searchBtn">Search</button>
+    </div>
+
+    <div id = "latest-listings">Latest Listings 
+        <%if (typeof latestLocations !== 'undefined' && typeof latestListings !== 'undefined') {%> 
+        <div>
+            <%if (latestLocations[0]) {%>
+                <%=latestLocations[0].address%>
+                <%=latestLocations[0].city%>,
+                <%=latestLocations[0].province_state%>,
+                <%=latestLocations[0].country%>
+            <%}%>
+            <%if (latestListings[0]) {%>
+                <%=latestListings[0].price%>
+            <%}%>
+        </div>
+        <div>
+            <%if (latestLocations[1]) {%>
+                <%=latestLocations[1].address%>
+                <%=latestLocations[1].city%>,
+                <%=latestLocations[1].province_state%>,
+                <%=latestLocations[1].country%>
+            <%}%>
+            <%if (latestListings[1]) {%>
+                <%=latestListings[1].price%>
+            <%}%>
+        </div>
+        <div>
+            <%if (latestLocations[2]) {%>
+                <%=latestLocations[2].address%>
+                <%=latestLocations[2].city%>,
+                <%=latestLocations[2].province_state%>,
+                <%=latestLocations[2].country%>
+            <%}%>
+            <%if (latestListings[2]) {%>
+                <%=latestListings[2].price%>
+            <%}%>
+        </div>
+        <%}%>
     </div>
 
 	
