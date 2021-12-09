@@ -17,7 +17,6 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
       db.connection.query(latestLocationsSql, (err, result) => {
         if (err) reject(err)
         else {
-          console.log('res', result);
           resolve(result);
         }
       })
@@ -29,7 +28,6 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
       db.connection.query(latestListingsSql, (err, result) => {
         if (err) reject(err)
         else {
-          console.log('res', result);
           resolve(result);
         }
       })
@@ -61,7 +59,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
       var latestLocations = await getLatestLocations(latestLocationsSql);
       var latestListings = await getlatestListings(latestListingsSql);
       var res = await loadPage(query, input, latestLocations, latestListings);
-      console.log('vars', latestListings, latestLocations);
+      // console.log('vars', latestListings, latestLocations);
       return {result: res}
     } catch(error) {
       console.log('rejected bitch', error);
