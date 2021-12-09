@@ -1,5 +1,4 @@
 var db = require('/myapp/routes/connection');
-const multer = require("multer");
 
 insertBuilding = (buildingSql, buildingValues, insertIds) => {
     return new Promise((resolve, reject) => {
@@ -56,39 +55,7 @@ insertListing = (listingSql, listingValues) => {
     })
 }
 
-// storePhoto = (req, res) => {
-//     return new Promise((resolve, reject) => {
-//         console.log('file', req.file)
-//         upload.single("photo");
-//         console.log('file after', req.file)
-//         const tempPath = req.file.path;
-//         const targetPath = path.join(__dirname, "./uploads/image.png");
 
-//         if (path.extname(req.file.originalname).toLowerCase() === ".png") {
-//             fs.rename(tempPath, targetPath, err => {
-//                 if (err) reject(err)
-//                 else resolve('File uploaded')
-//             });
-//         } 
-//         else {
-//             fs.unlink(tempPath, err => {
-//             if (err) reject(err);
-//             else reject('Incorrect file type')
-//             });
-//         }
-//     })
-// }
-
-// fileStorageEngine = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, '/public/user-uploads')
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, Date.now() + '--' + file.originalname)
-//     }
-//   });
-  
-// upload = multer({storage: fileStorageEngine})
 
 async function addNewListing(data){
     for (var key in data) {
@@ -114,7 +81,6 @@ async function addNewListing(data){
         var listingValues = [insertIds[0], insertIds[1], insertIds[2], data.title, data.price, data.listing_type, data.description];
        
         res = await insertListing(listingSql, listingValues)
-        // res2 = await storePhoto(req, res)
     } catch(error) {
         console.log('Promsise rejected:', error)
     }

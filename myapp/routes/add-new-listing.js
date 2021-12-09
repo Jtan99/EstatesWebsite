@@ -13,7 +13,7 @@ addNewListingCallback = (data, req, res) => {
 
 router.post('/', async function(req, res, next) {
     var data = req.body
-    await addNewListingCallback(data, req, res)
+    await addNewListingCallback(data)
     res.redirect('/')
 });
 
