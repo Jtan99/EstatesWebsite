@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var addNewListing = require('/myapp/services/add-new-listing-service').addNewListing;
 var db = require('/myapp/routes/connection');
+var currSession = require('/myapp/routes/session');
 
 /* GET new listing page. */
-router.get('/new', currSession.checkSessionStatus, function(req, res, next) {
+router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
     var query = `SELECT * FROM user WHERE username=?`;
     var input = [req.session.user[0]["username"]];
     db.connection.query(query, input, (err, rows) => {
@@ -19,6 +20,7 @@ router.get('/new', currSession.checkSessionStatus, function(req, res, next) {
         res.render('new-listing', {full_name: user_info.full_name});
       }
     });
+});
 
 /* POST new listing. */
 addNewListingCallback = (data, req, res) => {
@@ -53,16 +55,13 @@ router.get('/edit', function(req, res, next) {
       res.json({success: false});
     }
     else{
-      console.log(data)
-      console.log("setting the initial");
-      console.log('rental is', data[0].listing_type);
-      console.log(data[0].listing_type == 'rental');
       res.render('edit-listing', {data:data[0]});
     }
   });
 });
 
 router.post('/update-listing', function(req, res, next) {
+  console.log("inside of update")
   var listing_query = 
     `
     UPDATE listing
@@ -79,7 +78,7 @@ router.post('/update-listing', function(req, res, next) {
   var building_query = 
     `
     UPDATE building
-    SET bathrooms=?, bedrooms=?, floor_space=?, buildingtype=?, storeys=?, appliances=?
+    SET bathrooms=?, bedrooms=?, floor_space=?, building_type=?, storeys=?, appliances=?
     WHERE buildingid=?
     `;
   var building_input = [
@@ -93,7 +92,7 @@ router.post('/update-listing', function(req, res, next) {
   ];
   var property_query = 
     `
-    UPDATE building
+    UPDATE property
     SET property_age=?, annual_property_tax=?, parking_type=?, amenities=?
     WHERE propertyid=?
     `;
@@ -106,7 +105,7 @@ router.post('/update-listing', function(req, res, next) {
   ];
   var location_query = 
     `
-    UPDATE building
+    UPDATE location
     SET country=?, province_state=?, address=?, postal_code=?
     WHERE locationid=?
     `;
@@ -119,19 +118,17 @@ router.post('/update-listing', function(req, res, next) {
   ];
 
   var queries = {};
-  query[listing_query] = listing_input;
-  query[building_query] = building_input;
-  query[property_query] = property_input;
-  query[location_query] = location_input;
+  queries[listing_query] = listing_input;
+  queries[building_query] = building_input;
+  queries[property_query] = property_input;
+  queries[location_query] = location_input;
 
   for (var query in queries) {
+    console.log("posting query", query)
     var input = queries[query]
       db.connection.query(query, input, (err, results, fields) => {
           if (err) {
             console.log('ERR:', err.message)
-          }
-          else {
-            console.log('res', results, 'fields', fields)
           }
       });
   }
@@ -153,19 +150,16 @@ router.post('/delete-listing', function(req, res, next) {
   var location_input = [req.body.locationid]
 
   var queries = {};
-  query[listing_query] = listing_input;
-  query[building_query] = building_input;
-  query[property_query] = property_input;
-  query[location_query] = location_input;
+  queries[listing_query] = listing_input;
+  queries[building_query] = building_input;
+  queries[property_query] = property_input;
+  queries[location_query] = location_input;
 
   for (var query in queries) {
     var input = queries[query]
       db.connection.query(query, input, (err, results, fields) => {
           if (err) {
             console.log('ERR:', err.message)
-          }
-          else {
-            console.log('res', results, 'fields', fields)
           }
       });
   }

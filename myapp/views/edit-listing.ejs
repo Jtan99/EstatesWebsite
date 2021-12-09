@@ -7,13 +7,13 @@
   </head>
   <body>
     <h1>New Listing</h1>
-    <form action="/new-listing" method="post">
+    <form action="/listing/update-listing" method="post">
       <h2>Basic Listing Information</h2>
       <p>Title</p>
-      <input type="hidden" name="listingid" value="<%=data.listingid%>" readonly>>
-      <input type="hidden" name="buildingid" value="<%=data.buildingid%>" readonly>>
-      <input type="hidden" name="propertyid" value="<%=data.propertyid%>" readonly>>
-      <input type="hidden" name="locationid" value="<%=data.locationid%>" readonly>>
+      <input type="hidden" name="listingid" value="<%=data.listingid%>" readonly>
+      <input type="hidden" name="buildingid" value="<%=data.buildingid%>" readonly>
+      <input type="hidden" name="propertyid" value="<%=data.propertyid%>" readonly>
+      <input type="hidden" name="locationid" value="<%=data.locationid%>" readonly>
 
       <input type="text" name="title" value="<%=data.title%>" required>
       <p>Price</p>
@@ -54,13 +54,23 @@
       <input type="text" name="country" value="<%=data.country%>" required>
       <p>Province/State</p>
       <input type="text" name="province_state" value="<%=data.province_state%>" required>
+      <p>City</p>
+      <input type="text" name="city" value="<%=data.city%>" required>
       <p>Address</p>
       <input type="text" name="address" value="<%=data.address%>" required>
       <p>Postal Code</p>
       <input type="text" name="postal_code" value="<%=data.postal_code%>" required>
       <p> </p>
-      <input type="submit">
+      <button type="submit">Update</button>
     </form>
+    <form action="/listing/delete-listing" method="post">
+      <h2>Testing delete button</h2>
+      <input type="hidden" name="listingid" value="<%=data.listingid%>" readonly>
+      <input type="hidden" name="buildingid" value="<%=data.buildingid%>" readonly>
+      <input type="hidden" name="propertyid" value="<%=data.propertyid%>" readonly>
+      <input type="hidden" name="locationid" value="<%=data.locationid%>" readonly>
+      <button type="submit">Click to delete</button>
+  </form>
   </body>
   <script>
       $('#listing_type').val("<%=data.listing_type%>")
