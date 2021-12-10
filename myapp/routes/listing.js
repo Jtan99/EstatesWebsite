@@ -16,6 +16,8 @@ const fileStorageEngine = multer.diskStorage({
   },
 });
 
+const upload = ({storage: fileStorageEngine})
+
 /* GET new listing page. */
 router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
   var query = `SELECT * FROM user WHERE username=?`;
