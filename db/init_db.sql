@@ -1,14 +1,12 @@
-CREATE TABLE Users(
+CREATE TABLE user(
 	`userid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(60),
-	`email` VARCHAR(60),
-	`password` VARCHAR(60),
-	`full_name` VARCHAR(60),
-	`role` VARCHAR(60),
+	`username` VARCHAR(60) NOT NULL UNIQUE,
+	`email` VARCHAR(60) NOT NULL,
+	`password` VARCHAR(60) NOT NULL,
+	`full_name` VARCHAR(60) NOT NULL,
+	`role` VARCHAR(60) NOT NULL,
 	PRIMARY KEY (`userid`)
 );
-
-INSERT INTO Users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
 
 CREATE TABLE building(
   `buildingid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
@@ -34,6 +32,7 @@ CREATE TABLE location(
   `locationid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
   `country` VARCHAR(60) NOT NULL,
   `province_state` VARCHAR(60) NOT NULL,
+  `city` VARCHAR(60) NOT NULL,
   `address` VARCHAR(60) NOT NULL,
   `postal_code` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`locationid`)
@@ -54,6 +53,11 @@ CREATE TABLE listing(
 	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
 );
 
-INSERT INTO Users(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
+INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
+
+INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(1, 1, 1, 1, "text example", 1, 'text example');
+INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(1, 1, "text example", "text example");
+INSERT INTO location(country, province_state, city, address, postal_code) VALUES("text example", "text example", "text example", "text example", "text example");
+INSERT INTO listing(buildingid, propertyid, locationid, title, price, listing_type, description) VALUES(1, 1, 1, 'text example', 1, 'sale', 'text example');
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';

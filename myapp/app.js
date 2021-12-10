@@ -7,18 +7,11 @@ var logger = require('morgan');
 var sessionRouter = require('./routes/session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var newListingRouter = require('./routes/new-listing');
-var addNewListingRouter = require('./routes/add-new-listing');
-var viewListingRouter = require('./routes/view-listing');
-
-// var mysql = require('mysql');
-// var connection = mysql.createPool({
-//   connectionLimit: 10,
-//   host: process.env.MYSQL_HOST || 'localhost',
-//   user: process.env.MYSQL_USER || 'root',
-//   password: process.env.MYSQL_PASSWORD || 'password',
-//   database: process.env.MYSQL_DATABASE || 'mydb'
-// });
+var listingRouter = require('./routes/listing');
+var viewProfileRouter = require('./routes/profile');
+var viewEditProfileRouter = require('./routes/edit-profile');
+var viewHomePageRouter = require('./routes/home');
+var db = require('./routes/connection');
 
 var app = express();
 
@@ -35,9 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(sessionRouter)
 app.use('/index', indexRouter);
 app.use('/', usersRouter);
-app.use('/new-listing', newListingRouter);
-app.use('/add-new-listing', addNewListingRouter);
-app.use('/listings/homes', viewListingRouter);
+app.use('/listing', listingRouter);
+app.use('/profile', viewProfileRouter);
+app.use('/edit-profile', viewEditProfileRouter);
+app.use('/homepage', viewHomePageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,4 +50,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports.app = app;
-// module.exports.con = con;
