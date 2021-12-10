@@ -3,37 +3,51 @@ var router = express.Router();
 var addNewListing = require('/myapp/services/add-new-listing-service').addNewListing;
 var db = require('/myapp/routes/connection');
 var currSession = require('/myapp/routes/session');
+var path = require('path');
+const multer  = require('multer');
+
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '/myapp/routes/images');
+  },
+  filename: (req, file, cb) => {
+    console.log('in func', file)
+    cb(null, Date.now() + "--" + file.originalname);
+  },
+});
 
 /* GET new listing page. */
 router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
-    var query = `SELECT * FROM user WHERE username=?`;
-    var input = [req.session.user[0]["username"]];
-    db.connection.query(query, input, (err, rows) => {
-      if(err){
-        res.json({
-          success: false,
-          err
-          });
-      }
-      else{
-        var user_info = rows[0];
-        res.render('new-listing', {full_name: user_info.full_name});
-      }
-    });
+  var query = `SELECT * FROM user WHERE username=?`;
+  var input = [req.session.user[0]["username"]];
+  db.connection.query(query, input, (err, rows) => {
+    if(err){
+      res.json({
+        success: false,
+        err
+        });
+    }
+    else{
+      var user_info = rows[0];
+      res.render('new-listing', {full_name: user_info.full_name});
+    }
+  });
 });
+
 
 /* POST new listing. */
-addNewListingCallback = (data, req, res) => {
-    return new Promise((resolve, reject) => {
-        resolve(addNewListing(data, req, res));
-    });
-};
-
-router.post('/new-listing', async function(req, res, next) {
+router.post('/new-listing', upload.single('photo'), async function(req, res, next) {
+  console.log('file', req.file);
   var data = req.body;
-  await addNewListingCallback(data);
-  res.redirect('/')
+  await addNewListingCallback(data, req, res);
+  res.redirect('/');
 });
+
+addNewListingCallback = (data, req, res) => {
+  return new Promise((resolve, reject) => {
+    resolve(addNewListing(data, req, res));
+  });
+};
 
 router.get('/edit', function(req, res, next) {
   //TODO change hardcoded listingid once display listing page is set up
