@@ -11,12 +11,12 @@ const fileStorageEngine = multer.diskStorage({
     cb(null, '/myapp/routes/images');
   },
   filename: (req, file, cb) => {
-    console.log('in func', file)
+    console.log('in func', file);
     cb(null, Date.now() + "--" + file.originalname);
   },
 });
 
-const upload = ({storage: fileStorageEngine})
+const upload = multer({storage: fileStorageEngine})
 
 /* GET new listing page. */
 router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
