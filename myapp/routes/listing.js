@@ -167,4 +167,28 @@ router.post('/delete-listing', function(req, res, next) {
   res.redirect('/homepage')
 });
 
+router.get("/homes/:id", function (req, res, next) {
+	// get from db:
+	db.connection.query(
+		`SELECT *
+		FROM (SELECT *
+			  FROM listing
+			  WHERE listingid=?) AS listing
+		INNER JOIN building ON listing.buildingid=building.buildingid
+		INNER JOIN property ON listing.propertyid=property.propertyid
+		INNER JOIN location ON listing.locationid=location.locationid`,
+		[req.params.id],
+		(err, results) => {
+			if (err) {
+				res.status(500).send({ message: "Error" });
+			} else if (!results.length) {
+				res.status(404).send({ message: "Not Found" });
+			} else {
+				console.log("Results", results[0])
+          res.render("view-home-listing", { listing: results[0], API_KEY: "AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o" });
+			}
+		}
+    );
+});
+
 module.exports = router;
