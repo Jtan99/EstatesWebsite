@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8" />
+<html>
+<head>
+	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css" />
-    <title>profile</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/search.css" />
+	<title>Search</title>
 </head>
 <body>
     <header>
-        <img class="logo" src="images/logo.png" alt="logo">
+        <img class="logo" src="/images/logo.png" alt="logo">
         <nav>
             <ul class="nav_links">
                 <li><a href="/homepage">Home</a></li>
@@ -30,25 +30,17 @@
             </div>
         </div>
     </header>
-    <div class="container">
-        <div class = "login-form">
-            <h1>User Profile</h1>
-            <div class ="flex-center">
-                <label>Username: <%= username %></label>
-            </div>
-            <div class ="flex-center">
-                <label>Email: <%= email %></label>
-            </div>
-            <div class ="flex-center">
-                <label>Full Name: <%= full_name %></label>
-            </div>
-            <div class ="flex-center">
-                <label>Role: <%= role %></label>
-            </div>            
-            <div class = "link-container3">
-                <a href="/edit-profile">Click to Edit Profile</a>
-            </div>
-        </div>
+
+	<div class="container">
+        <div class = "search-form">
+			<form action="/filter/search" method="post">
+				<label>Country</label>
+				<input type="text" name="country" placeholder="Canada">
+				<label>City</label>
+				<input type="text" name="city" placeholder="Vancouver">
+				<button type="submit">Search</button>
+			</form>
+    	</div>
     </div>
 </body>
 </html>
