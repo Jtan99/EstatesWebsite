@@ -39,13 +39,14 @@
         <%if (typeof latestLocations !== 'undefined' && typeof latestListings !== 'undefined') {%> 
         <div>
             <%if (latestLocations[0]) {%>
-                <%=latestLocations[0].address%>
+                <%=latestLocations[0].address%>,
                 <%=latestLocations[0].city%>,
                 <%=latestLocations[0].province_state%>,
                 <%=latestLocations[0].country%>
             <%}%>
             <%if (latestListings[0]) {%>
                 <%=latestListings[0].price%>
+                <img src="data:image/jpg;base64,<%= latestListings[0].photo %>"/>
             <%}%>
         </div>
         <div>

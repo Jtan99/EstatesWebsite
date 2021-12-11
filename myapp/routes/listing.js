@@ -4,19 +4,6 @@ var addNewListing = require('/myapp/services/add-new-listing-service').addNewLis
 var db = require('/myapp/routes/connection');
 var currSession = require('/myapp/routes/session');
 var path = require('path');
-const multer  = require('multer');
-
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, '/myapp/routes/images');
-  },
-  filename: (req, file, cb) => {
-    console.log('in func', file);
-    cb(null, Date.now() + "--" + file.originalname);
-  },
-});
-
-const upload = multer({storage: fileStorageEngine})
 
 /* GET new listing page. */
 router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
@@ -36,10 +23,8 @@ router.get('/new-listing', currSession.checkSessionStatus, function(req, res, ne
   });
 });
 
-
 /* POST new listing. */
-router.post('/new-listing', upload.single('photo'), async function(req, res, next) {
-  console.log('file', req.file);
+router.post('/new-listing', async function(req, res, next) {
   var data = req.body;
   await addNewListingCallback(data, req, res);
   res.redirect('/');

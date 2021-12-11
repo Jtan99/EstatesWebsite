@@ -77,14 +77,14 @@ async function addNewListing(data, req, res){
     insertIds = await insertProperty(propertySql, propertyValues, insertIds);
     insertIds = await insertLocation(locationSql, locationValues, insertIds);
 
-    var listingSql = 'INSERT INTO listing (buildingid, propertyid, locationid, title, price, listing_type, description) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    var listingValues = [insertIds[0], insertIds[1], insertIds[2], data.title, data.price, data.listing_type, data.description];
+    var listingSql = 'INSERT INTO listing (buildingid, propertyid, locationid, title, price, listing_type, description, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    var listingValues = [insertIds[0], insertIds[1], insertIds[2], data.title, data.price, data.listing_type, data.description, data.photo];
     
-    res = await insertListing(listingSql, listingValues);
+    await insertListing(listingSql, listingValues);
+
   } catch(error) {
     console.log('Promsise rejected:', error);
   }
-
 }
 
 module.exports.addNewListing = addNewListing;

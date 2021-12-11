@@ -47,6 +47,7 @@ CREATE TABLE listing(
 	`price` INT NOT NULL,
 	`listing_type` VARCHAR(60) NOT NULL,
 	`description` VARCHAR(2000) NULL,
+  `photo` LONGBLOB,
 	PRIMARY KEY (`listingid`),
 	FOREIGN KEY (`buildingid`) REFERENCES building(`buildingid`),
 	FOREIGN KEY (`propertyid`) REFERENCES property(`propertyid`),
