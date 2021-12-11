@@ -1,20 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var currSession = require('/myapp/routes/session');
 var db = require('/myapp/routes/connection');
+var currSession = require('/myapp/routes/session');
+var csrf = require('/myapp/routes/csrf');
+
 
 router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
   res.redirect("/login");
 })
 
-router.get('/login', currSession.checkSessionLoggedIn, (req,res) => {
-  // console.log(path.join(__dirname, '../views/login.html'))
-  // res.sendFile(path.join(__dirname, '../views/login.html'));
+router.get('/login', currSession.checkSessionLoggedIn, csrf.csrfProtection, (req,res) => {
+  // console.log("csrf is", req.csrfToken())
   res.render('login');
+  res.render('login', { csrfToken: req.csrfToken() });
 });
 
-router.post('/login', (req,res) => {
+router.post('/login', csrf.parseForm, csrf.csrfProtection, (req,res) => {
   var query = `SELECT username FROM user WHERE username=? AND password=?`;
   var input = [req.body.username, req.body.password];
   console.log("req.body is", req.body);

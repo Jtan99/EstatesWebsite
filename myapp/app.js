@@ -12,7 +12,6 @@ var listingRouter = require('./routes/listing');
 var viewProfileRouter = require('./routes/profile');
 var viewEditProfileRouter = require('./routes/edit-profile');
 var viewHomePageRouter = require('./routes/home');
-var db = require('./routes/connection');
 
 var app = express();
 
