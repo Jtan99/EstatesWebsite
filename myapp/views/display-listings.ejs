@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Display Listings</title>
+</head>
+<body>
+	<h1>Contact List</h1>
+	<ul>
+		<%for(var i=0; i<listings.length; i++){%>
+			<li>
+				<!-- TODO: change href to view-->
+				<a href="/view?listingid=<%=listings[i].listingid%>">
+					Title: <%=listings[i].title%>
+					Price: <%=listings[i].price%>
+				</a>
+			</li>
+  		<%};%>
+	</ul>
+</body>
+</html>
