@@ -53,11 +53,34 @@ CREATE TABLE listing(
 	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
 );
 
+CREATE TABLE roommate_listing(
+	`listingid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+	`buildingid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`propertyid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`locationid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`title` VARCHAR(200) NOT NULL,
+	`price` INT NOT NULL,
+	`description` VARCHAR(2000) NULL,
+	PRIMARY KEY (`listingid`),
+	FOREIGN KEY (`buildingid`) REFERENCES building(`buildingid`),
+	FOREIGN KEY (`propertyid`) REFERENCES property(`propertyid`),
+	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
+);
+
 INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
 
 INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(1, 1, 1, 1, "text example", 1, 'text example');
 INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(1, 1, "text example", "text example");
 INSERT INTO location(country, province_state, city, address, postal_code) VALUES("text example", "text example", "text example", "text example", "text example");
 INSERT INTO listing(buildingid, propertyid, locationid, title, price, listing_type, description) VALUES(1, 1, 1, 'text example', 1, 'sale', 'text example');
+
+INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) 
+  VALUES(2, 1, 1, 1, "text example", 1, 'text example');
+INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) 
+  VALUES(2, 1, "text example", "text example");
+INSERT INTO location(country, province_state, city, address, postal_code) 
+  VALUES("text example", "text example", "text example", "text example", "text example");
+INSERT INTO roommate_listing(buildingid, propertyid, locationid, title, price, description) 
+  VALUES(2, 2, 2, 'text example', 1, 'looking for a friendly roomate');
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
