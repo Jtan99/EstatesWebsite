@@ -6,7 +6,7 @@ var csrf = require('/myapp/routes/csrf');
 
 router.get('/search', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
   console.log(req.session)
-  res.render('search-page', {full_name: req.session.user[0]["username"], csrfToken: req.csrfToken()});
+  res.render('search-page', {username: req.session.user[0]["username"], csrfToken: req.csrfToken()});
 });
 
 router.post('/search', csrf.parseForm, csrf.csrfProtection, (req, res) => {

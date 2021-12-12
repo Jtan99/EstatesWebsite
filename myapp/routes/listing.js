@@ -36,14 +36,8 @@ router.post('/new-listing', csrf.parseForm, csrf.csrfProtection, async function(
   res.redirect('/')
 });
 
-<<<<<<< HEAD
-router.get('/edit/:id', currSession.checkSessionStatus, function(req, res, next) {
+router.get('/edit/:id', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
   var listingid = req.params.id
-=======
-router.get('/edit', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
-  //TODO change hardcoded listingid once display listing page is set up
-  var listingid = 1;
->>>>>>> 7844167 (extended csrf to all forms)
 
   var query = 
     `SELECT *
@@ -61,11 +55,7 @@ router.get('/edit', currSession.checkSessionStatus, csrf.csrfProtection, (req, r
       res.json({success: false});
     }
     else{
-<<<<<<< HEAD
-      res.render('edit-listing', {data: data[0], username: req.session.user[0]['username']});
-=======
-      res.render('edit-listing', {data:data[0], csrfToken: req.csrfToken()});
->>>>>>> 7844167 (extended csrf to all forms)
+      res.render('edit-listing', {data: data[0], username: req.session.user[0]['username'], csrfToken: req.csrfToken()});
     }
   });
 });
