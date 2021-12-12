@@ -16,6 +16,7 @@
             document.getElementById('password2').value))"
         class = "login-form"
     >
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <h1>Create an Account</h1>
         <div class ="flex-input">
             <label for="">Email:</label>

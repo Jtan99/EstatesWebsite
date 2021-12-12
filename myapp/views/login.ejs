@@ -8,6 +8,7 @@
 </head>
 <body class = "container">
     <form action="/login" method="post" class = "login-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <h1>Login Here</h1>
         <div class ="flex-input">
             <label for="">Username:</label>

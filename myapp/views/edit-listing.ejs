@@ -9,6 +9,7 @@
     <%- include('partials/nav.ejs') %>
     <h1>Edit Listing</h1>
     <form action="/listing/update-listing" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <h2>Basic Listing Information</h2>
       <p>Title</p>
       <input type="hidden" name="listingid" value="<%=data.listingid%>" readonly>
@@ -65,7 +66,7 @@
       <button type="submit">Update</button>
     </form>
     <form action="/listing/delete-listing" method="post">
-      <h2>Testing delete button</h2>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <input type="hidden" name="listingid" value="<%=data.listingid%>" readonly>
       <input type="hidden" name="buildingid" value="<%=data.buildingid%>" readonly>
       <input type="hidden" name="propertyid" value="<%=data.propertyid%>" readonly>
