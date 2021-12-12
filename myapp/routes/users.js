@@ -47,11 +47,12 @@ router.get('/register', csrf.csrfProtection, (req, res)=> {
 
 router.post('/register', csrf.parseForm, csrf.csrfProtection, (req, res) =>{
   var query = "INSERT " +
-    "INTO user(username, email, password, full_name, role) " +
+    "INTO user(username, email, phone, password, full_name, role) " +
     "VALUES(?,?,?,?,?)";
   var input = [
     req.body.username,
     req.body.email,
+    req.body.phone,
     req.body.password,
     req.body.full_name,
     "regular"
