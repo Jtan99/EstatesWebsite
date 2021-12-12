@@ -2,11 +2,12 @@
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css"/>
   </head>
   <body>
-    <h1>New Listing</h1>
+    <%- include('partials/nav.ejs') %>
+    <h1>Edit Listing</h1>
     <form action="/listing/update-listing" method="post">
       <h2>Basic Listing Information</h2>
       <p>Title</p>

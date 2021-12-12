@@ -8,28 +8,7 @@
     <title>profile</title>
 </head>
 <body>
-    <header>
-        <img class="logo" src="images/logo.png" alt="logo">
-        <nav>
-            <ul class="nav_links">
-                <li><a href="/homepage">Home</a></li>
-                <li><a href="/filter/search">Buy</a></li>
-                <li><a href="/listing/new-listing">Sell</a></li>
-                <li><a href="/chat">Chat</a></li>
-                <li><a href="/findroommate">Find Roommates</a></li>
-            </ul>
-        </nav> 
-        
-        <div class="dropdown">
-            <button class="dropbtn"><%=full_name%> 
-              <i class="arrow down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href='/profile'>View Profile</a>
-                <a id="logout" href='/logout'>Log Out</a>
-            </div>
-        </div>
-    </header>
+    <%- include('partials/nav.ejs') %>
     <div class="container">
         <div class = "login-form">
             <h1>User Profile</h1>
@@ -44,7 +23,10 @@
             </div>
             <div class ="flex-center">
                 <label>Role: <%= role %></label>
-            </div>            
+            </div>
+            <div class = "link-container3">
+                <a href="/filter/owned-listings">View your listings</a>
+            </div>
             <div class = "link-container3">
                 <a href="/edit-profile">Click to Edit Profile</a>
             </div>

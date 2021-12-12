@@ -1,21 +1,23 @@
 <header>
-    <img class="logo" src="/images/logo.png" alt="logo">
-    <nav>
-        <ul class="nav_links">
-            <li><a href="/homepage">Buy</a></li>
-            <li><a href="/new-listing">Sell</a></li>
-            <li><a href="/chat">Chat</a></li>
-            <li><a href="/findroommate">Find Roommates</a></li>
-        </ul>
-    </nav> 
-    
-    <div class="dropdown">
-        <button class="dropbtn">Username 
-            <i class="arrow down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href='/profile'>View Profile</a>
-            <a id="logout" href='/logout'>Log Out</a>
-        </div>
-    </div>
+    <a href="/homepage"><img class="logo" src="/images/logo.png" alt="logo" /></a>
+	<nav>
+		<ul class="nav_links">
+			<li><a href="/homepage">Home</a></li>
+			<li><a href="/filter/search">Buy</a></li>
+			<li><a href="/listing/new-listing">Sell</a></li>
+			<li><a href="/chat">Chat</a></li>
+			<li><a href="/findroommate">Find Roommates</a></li>
+		</ul>
+	</nav>
+
+	<div class="dropdown">
+		<button class="dropbtn">
+			<%=full_name%>
+			<i class="arrow down"></i>
+		</button>
+		<div class="dropdown-content">
+			<a href="/profile">View Profile</a>
+			<a id="logout" href="/logout">Log Out</a>
+		</div>
+	</div>
 </header>

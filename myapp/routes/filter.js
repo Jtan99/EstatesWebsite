@@ -22,7 +22,25 @@ router.post('/search', currSession.checkSessionStatus, (req, res) => {
       res.json({success: false, err});
     }
     // console.log(listings)
-    res.render('display-listings', {listings:listings})
+    res.render('display-listings', {title: "Found Listings", listings:listings, full_name: req.session.user[0]['username']})
+  });
+});
+
+router.get('/owned-listings', currSession.checkSessionStatus, (req, res) => {
+  var query =
+  ` 
+    SELECT *
+    FROM listing
+    WHERE seller_username = ?
+  `
+  var input = [req.session.user[0]['username']]
+  db.connection.query(query, input , (err, listings) => {
+    if (err) {
+      //prompt user failure
+      res.json({success: false, err});
+    }
+    // console.log(listings)
+    res.render('display-listings', {title: "Your Listings", listings: listings, full_name: req.session.user[0]['username']})
   });
 });
 
