@@ -24,4 +24,10 @@ services:
     ports:
       - "3000:3000"
     restart: on-failure
+  web:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile-web
+    ports:
+      - "8080:80"
 
