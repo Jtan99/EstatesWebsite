@@ -1,4 +1,6 @@
-- localhost:3000/ will redirect users to the login page localhost:3000/login
+- clone git
+- run docker-compose build; docker-compose up
+- open browser and head to localhost:8080/ which will redirect users to the login page localhost:8080/login
 - Users can register for an account which gets inserted in the database for logging in
 - username: admin password: admin are already inserted into the database
 - Users are redirected to the homepage after logging in which includes a navbar
