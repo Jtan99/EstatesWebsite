@@ -7,9 +7,9 @@
   </head>
   <body>
     <%- include('partials/nav.ejs') %>
-
     <form action="/listing/new-listing" method="post" class = "container">
       <div class = "login-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <h1>Listing Information</h1>
 
         <div class ="flex-input">

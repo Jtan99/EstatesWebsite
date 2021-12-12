@@ -3,9 +3,10 @@ var router = express.Router();
 var addNewListing = require('/myapp/services/add-new-listing-service').addNewListing;
 var db = require('/myapp/routes/connection');
 var currSession = require('/myapp/routes/session');
+var csrf = require('/myapp/routes/csrf');
 
 /* GET new listing page. */
-router.get('/new-listing', currSession.checkSessionStatus, function(req, res, next) {
+router.get('/new-listing', currSession.checkSessionStatus, csrf.csrfProtection, function(req, res, next) {
     var query = `SELECT * FROM user WHERE username=?`;
     var input = [req.session.user[0]["username"]];
     db.connection.query(query, input, (err, rows) => {
@@ -17,7 +18,7 @@ router.get('/new-listing', currSession.checkSessionStatus, function(req, res, ne
       }
       else{
         var user_info = rows[0];
-        res.render('new-listing', {username: user_info.username});
+        res.render('new-listing', {username: user_info.username, csrfToken: req.csrfToken() });
       }
     });
 });
@@ -29,14 +30,20 @@ addNewListingCallback = (data, req, res) => {
     });
 };
 
-router.post('/new-listing', async function(req, res, next) {
+router.post('/new-listing', csrf.parseForm, csrf.csrfProtection, async function(req, res, next) {
   var data = req.body;
   await addNewListingCallback(data, req, res);
   res.redirect('/')
 });
 
+<<<<<<< HEAD
 router.get('/edit/:id', currSession.checkSessionStatus, function(req, res, next) {
   var listingid = req.params.id
+=======
+router.get('/edit', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
+  //TODO change hardcoded listingid once display listing page is set up
+  var listingid = 1;
+>>>>>>> 7844167 (extended csrf to all forms)
 
   var query = 
     `SELECT *
@@ -54,12 +61,16 @@ router.get('/edit/:id', currSession.checkSessionStatus, function(req, res, next)
       res.json({success: false});
     }
     else{
+<<<<<<< HEAD
       res.render('edit-listing', {data: data[0], username: req.session.user[0]['username']});
+=======
+      res.render('edit-listing', {data:data[0], csrfToken: req.csrfToken()});
+>>>>>>> 7844167 (extended csrf to all forms)
     }
   });
 });
 
-router.post('/update-listing', function(req, res, next) {
+router.post('/update-listing', csrf.parseForm, csrf.csrfProtection, (req, res) => {
   console.log("inside of update")
   var listing_query = 
     `
@@ -135,7 +146,7 @@ router.post('/update-listing', function(req, res, next) {
   res.redirect('/homepage')
 });
 
-router.post('/delete-listing', function(req, res, next) {
+router.post('/delete-listing', csrf.parseForm, csrf.csrfProtection, (req, res) => {
   var listing_query = `DELETE FROM listing WHERE listingid=?`
   var listing_input = [req.body.listingid]
 

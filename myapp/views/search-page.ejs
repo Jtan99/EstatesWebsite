@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/nav.css" />
-    <title>homepage</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/search.css" />
+    <title>Login</title>
 </head>
 <body>
     <header>
-        <img class="logo" src="images/logo.png" alt="logo">
+        <img class="logo" src="/images/logo.png" alt="logo">
         <nav>
             <ul class="nav_links">
                 <li><a href="/homepage">Home</a></li>
                 <li><a href="/filter/search">Buy</a></li>
-                <li><a href="/listing/new">Sell</a></li>
+                <li><a href="/listing/new-listing">Sell</a></li>
                 <li><a href="/chat">Chat</a></li>
                 <li><a href="/findroommate">Find Roommates</a></li>
             </ul>
         </nav> 
         
         <div class="dropdown">
-            <button class="dropbtn">Username 
+            <button class="dropbtn"><%=full_name%> 
               <i class="arrow down"></i>
             </button>
             <div class="dropdown-content">
@@ -30,11 +31,15 @@
         </div>
     </header>
 
-    <div id = "search">
-        <input id = "searchBar" type="text" placeholder="Search for a Listing">
-        <button id="searchBtn">Search</button>
+    <div class="container">    
+        <form action="/filter/search" method="post" class = "search-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label>Country</label>
+            <input type="text" name="country" placeholder="Canada">
+            <label>City</label>
+            <input type="text" name="city" placeholder="Vancouver">
+            <button type="submit">Search</button>
+        </form>
     </div>
-
-	
 </body>
 </html>

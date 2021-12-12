@@ -5,14 +5,11 @@ var db = require('/myapp/routes/connection');
 var currSession = require('/myapp/routes/session');
 var csrf = require('/myapp/routes/csrf');
 
-
 router.get("/", currSession.checkSessionLoggedIn, (req, res) => {
   res.redirect("/login");
 })
 
 router.get('/login', currSession.checkSessionLoggedIn, csrf.csrfProtection, (req,res) => {
-  // console.log("csrf is", req.csrfToken())
-  res.render('login');
   res.render('login', { csrfToken: req.csrfToken() });
 });
 
@@ -44,12 +41,11 @@ router.get("/logout", (req, res) => {
   }
 });
 
-router.get('/register', (req, res)=> {
-  // res.sendFile(path.join(__dirname, '../views/register.html'));
-  res.render('register');
+router.get('/register', csrf.csrfProtection, (req, res)=> {
+  res.render('register', { csrfToken: req.csrfToken() });
 });
 
-router.post('/register', (req, res) =>{
+router.post('/register', csrf.parseForm, csrf.csrfProtection, (req, res) =>{
   var query = "INSERT " +
     "INTO user(username, email, password, full_name, role) " +
     "VALUES(?,?,?,?,?)";

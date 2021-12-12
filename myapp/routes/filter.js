@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 var db = require('/myapp/routes/connection');
 var currSession = require('/myapp/routes/session');
-var path = require('path');
+var csrf = require('/myapp/routes/csrf');
 
-router.get('/search', currSession.checkSessionStatus, (req, res) => {
-  res.sendFile(path.join(__dirname, '../views', 'search-page.html'));
+router.get('/search', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
+  console.log(req.session)
+  res.render('search-page', {full_name: req.session.user[0]["username"], csrfToken: req.csrfToken()});
 });
 
-router.post('/search', currSession.checkSessionStatus, (req, res) => {
+router.post('/search', csrf.parseForm, csrf.csrfProtection, (req, res) => {
   var query =
   ` 
     SELECT *
