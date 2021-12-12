@@ -17,7 +17,7 @@ router.get('/new-listing', currSession.checkSessionStatus, function(req, res, ne
       }
       else{
         var user_info = rows[0];
-        res.render('new-listing', {full_name: user_info.full_name});
+        res.render('new-listing', {username: user_info.username});
       }
     });
 });
@@ -54,7 +54,7 @@ router.get('/edit/:id', currSession.checkSessionStatus, function(req, res, next)
       res.json({success: false});
     }
     else{
-      res.render('edit-listing', {data: data[0], full_name: req.session.user[0]['username']});
+      res.render('edit-listing', {data: data[0], username: req.session.user[0]['username']});
     }
   });
 });
@@ -183,7 +183,7 @@ router.get("/homes/:id", function (req, res, next) {
 				res.status(404).send({ message: "Not Found" });
 			} else {
 				console.log("Results", results[0])
-          res.render("view-home-listing", { listing: results[0], API_KEY: "AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o" , full_name: req.session.user[0]['username']});
+          res.render("view-home-listing", { listing: results[0], API_KEY: "AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o" , username: req.session.user[0]['username']});
 			}
 		}
     );

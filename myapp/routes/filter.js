@@ -22,7 +22,7 @@ router.post('/search', currSession.checkSessionStatus, (req, res) => {
       res.json({success: false, err});
     }
     // console.log(listings)
-    res.render('display-listings', {title: "Found Listings", listings:listings, full_name: req.session.user[0]['username']})
+    res.render('display-listings', {title: "Found Listings", listings:listings, username: req.session.user[0]['username']})
   });
 });
 
@@ -40,7 +40,7 @@ router.get('/owned-listings', currSession.checkSessionStatus, (req, res) => {
       res.json({success: false, err});
     }
     // console.log(listings)
-    res.render('display-listings', {title: "Your Listings", listings: listings, full_name: req.session.user[0]['username']})
+    res.render('display-listings', {title: "Your Listings", listings: listings, username: req.session.user[0]['username']})
   });
 });
 
