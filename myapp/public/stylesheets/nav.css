@@ -17,7 +17,7 @@ header {
     justify-content: space-between;
     align-content: center;
     padding:  15px 70px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .logo {

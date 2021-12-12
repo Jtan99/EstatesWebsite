@@ -3,15 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Display Listings</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/nav.css"/>
+	<title><%=title%></title>
 </head>
 <body>
-	<h1>Contact List</h1>
+	<%- include('partials/nav.ejs') %>
+	<h1><%=title%></h1>
 	<ul>
 		<%for(var i=0; i<listings.length; i++){%>
 			<li>
 				<!-- TODO: change href to view-->
-				<a href="/view?listingid=<%=listings[i].listingid%>">
+				<a href="/listing/homes/<%=listings[i].listingid%>">
 					Title: <%=listings[i].title%>
 					Price: <%=listings[i].price%>
 				</a>

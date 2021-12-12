@@ -44,7 +44,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
         }
         else{
           var user_info = rows[0];
-          res.render('home', {full_name: user_info.full_name, latestLocations: latestLocations, latestListings: latestListings});
+          res.render('home', {username: user_info.username, latestLocations: latestLocations, latestListings: latestListings});
           resolve('success')
         }
       })

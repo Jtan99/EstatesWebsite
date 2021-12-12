@@ -43,6 +43,7 @@ CREATE TABLE listing(
 	`buildingid` SMALLINT(6) NOT NULL DEFAULT 1,
 	`propertyid` SMALLINT(6) NOT NULL DEFAULT 1,
 	`locationid` SMALLINT(6) NOT NULL DEFAULT 1,
+	`seller_username` VARCHAR(60) NOT NULL,
 	`title` VARCHAR(200) NOT NULL,
 	`price` INT NOT NULL,
 	`listing_type` VARCHAR(60) NOT NULL,
@@ -50,7 +51,8 @@ CREATE TABLE listing(
 	PRIMARY KEY (`listingid`),
 	FOREIGN KEY (`buildingid`) REFERENCES building(`buildingid`),
 	FOREIGN KEY (`propertyid`) REFERENCES property(`propertyid`),
-	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`)
+	FOREIGN KEY (`locationid`) REFERENCES location(`locationid`),
+	FOREIGN KEY (`seller_username`) REFERENCES user(`username`)
 );
 
 INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
@@ -58,6 +60,6 @@ INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "ad
 INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(1, 1, 1, 1, "text example", 1, 'text example');
 INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(1, 1, "text example", "text example");
 INSERT INTO location(country, province_state, city, address, postal_code) VALUES("text example", "text example", "text example", "text example", "text example");
-INSERT INTO listing(buildingid, propertyid, locationid, title, price, listing_type, description) VALUES(1, 1, 1, 'text example', 1, 'sale', 'text example');
+INSERT INTO listing(buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES(1, 1, 1, 'admin', 'text example', 1, 'sale', 'text example');
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';

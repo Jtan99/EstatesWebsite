@@ -19,6 +19,13 @@
 					<h2 id="listing-title"><%= listing.title%></h2>
 				</div>
 			</div>
+			<% if(listing.seller_username === username){ %>
+				<div class="row">
+					<div class="col-lg-12">
+							<button class='button-4'><a href="/listing/edit/<%=listing.listingid%>">Edit listing</a></button>
+						</div>
+				</div>
+			<% } %>
 		</div>
 		<div class="container section">
 			<div class="row" id="contact-seller">
