@@ -9,7 +9,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
   
   console.log(req.session);
   var query = `SELECT * FROM user WHERE username=?`;
-  var input = [req.session.user[0]["username"]];
+  var input = [req.session.user["username"]];
 
   
   getLatestLocations = (latestLocationsSql) => {

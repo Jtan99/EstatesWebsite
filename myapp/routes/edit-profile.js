@@ -7,7 +7,7 @@ var csrf = require('/myapp/routes/csrf');
 /* GET user Profile. */
 router.get('/', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
   var query = `SELECT * FROM user WHERE username=?`;
-  var input = [req.session.user[0]["username"]];
+  var input = [req.session.user["username"]];
   db.connection.query(query, input, (err, results) => {
     if (err) console.log('ERRN:', err.message);
     else 
@@ -18,7 +18,6 @@ router.get('/', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) 
       username: user_info.username,
       email: user_info.email,
       phone: user_info.phone,
-      password: user_info.password,
       full_name: user_info.full_name,
       role: user_info.role,
       csrfToken: req.csrfToken()
@@ -29,13 +28,12 @@ router.get('/', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) 
 
 router.post('/', csrf.parseForm, csrf.csrfProtection,  (req, res) =>{
   // console.log(req.body.email, req.body.password, req.body.full_name);
-  var query = "UPDATE user SET email=?, password=?, full_name=?, phone=? WHERE username=?";
+  var query = "UPDATE user SET email=?, full_name=?, phone=? WHERE username=?";
   var input = [
     req.body.email,
-    req.body.password,
     req.body.full_name,
     req.body.phone,
-    req.session.user[0]["username"]
+    req.session.user["username"]
   ];
   db.connection.query(query, input , (err, user) => {
     //here goes to homepage

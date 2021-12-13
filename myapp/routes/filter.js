@@ -6,7 +6,7 @@ var csrf = require('/myapp/routes/csrf');
 
 router.get('/search', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
   console.log(req.session)
-  res.render('search-page', {username: req.session.user[0]["username"], csrfToken: req.csrfToken()});
+  res.render('search-page', {username: req.session.user["username"], csrfToken: req.csrfToken()});
 });
 
 router.post('/search', csrf.parseForm, csrf.csrfProtection, (req, res) => {
@@ -23,7 +23,7 @@ router.post('/search', csrf.parseForm, csrf.csrfProtection, (req, res) => {
       res.json({success: false, err});
     }
     // console.log(listings)
-    res.render('display-listings', {title: "Found Listings", listings:listings, username: req.session.user[0]['username']})
+    res.render('display-listings', {title: "Found Listings", listings:listings, username: req.session.user['username']})
   });
 });
 
@@ -34,14 +34,14 @@ router.get('/owned-listings', currSession.checkSessionStatus, (req, res) => {
     FROM listing
     WHERE seller_username = ?
   `
-  var input = [req.session.user[0]['username']]
+  var input = [req.session.user['username']]
   db.connection.query(query, input , (err, listings) => {
     if (err) {
       //prompt user failure
       res.json({success: false, err});
     }
     // console.log(listings)
-    res.render('display-listings', {title: "Your Listings", listings: listings, username: req.session.user[0]['username']})
+    res.render('display-listings', {title: "Your Listings", listings: listings, username: req.session.user['username']})
   });
 });
 

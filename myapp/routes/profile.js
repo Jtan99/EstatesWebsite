@@ -5,18 +5,14 @@ var db = require('/myapp/routes/connection');
 
 /* GET user Profile. */
 router.get('/', currSession.checkSessionStatus, (req, res) => {
-  // var user_name = req.session.user[0]["username"];
-  // console.log("this is username: " + user_name);
   var query = `SELECT * FROM user WHERE username=?`;
-  var input = [req.session.user[0]["username"]];
+  var input = [req.session.user["username"]];
   db.connection.query(query, input, (err, results) => {
-    if (err) console.log('ERRN:', err.message)
-    else 
-    // console.log('res', results);
-    // console.log('info', results[0].username);
+    if (err) {
+      console.log('ERRN:', err.message)
+    }
     var user_info = results[0];
     res.render('profile', {username: user_info.username, email: user_info.email, full_name: user_info.full_name, role: user_info.role, phone: user_info.phone});
-  
   });
 });
 
