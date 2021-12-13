@@ -15,7 +15,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
     // console.log('res', results);
     // console.log('info', results[0].username);
     var user_info = results[0];
-    res.render('profile', {username: user_info.username, email: user_info.email, full_name: user_info.full_name, role: user_info.role});
+    res.render('profile', {username: user_info.username, email: user_info.email, full_name: user_info.full_name, role: user_info.role, phone: user_info.phone});
   
   });
 });

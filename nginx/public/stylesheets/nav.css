@@ -26,6 +26,15 @@ header {
     height: fit-content;
 }
 
+nav {
+    height: fit-content;
+}
+
+#logobutton {
+    height: 66px;
+    width: 200px;
+}
+
 .nav_links {
     list-style: none;
     margin:0;

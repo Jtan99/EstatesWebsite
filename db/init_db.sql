@@ -2,6 +2,7 @@ CREATE TABLE user(
 	`userid` SMALLINT(6) NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(60) NOT NULL UNIQUE,
 	`email` VARCHAR(60) NOT NULL,
+	`phone` VARCHAR(60) NOT NULL,
 	`password` VARCHAR(60) NOT NULL,
 	`full_name` VARCHAR(60) NOT NULL,
 	`role` VARCHAR(60) NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE listing(
 	FOREIGN KEY (`seller_username`) REFERENCES user(`username`)
 );
 
-INSERT INTO user(username, email, password, full_name, role) VALUES("admin", "admin@hotmail.com", "admin", "admin user", "admin");
+INSERT INTO user(username, email, phone, password, full_name, role) VALUES("admin", "admin@hotmail.com", "123-123-1234", "admin", "admin user", "admin");
 
 INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(1, 1, 1, 1, "text example", 1, 'text example');
 INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(1, 1, "text example", "text example");

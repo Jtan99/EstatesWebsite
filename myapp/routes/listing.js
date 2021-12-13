@@ -169,12 +169,13 @@ router.post('/delete-listing', csrf.parseForm, csrf.csrfProtection, (req, res) =
 
 router.get("/homes/:id", function (req, res, next) {
 	db.connection.query(
-		`SELECT *
+		`SELECT listing.*, building.*, property.*, location.*, user.email, user.phone
 		FROM (SELECT *
 			  FROM listing
 			  WHERE listingid=?) AS listing
 		INNER JOIN building ON listing.buildingid=building.buildingid
 		INNER JOIN property ON listing.propertyid=property.propertyid
+		INNER JOIN user ON listing.seller_username=user.username
 		INNER JOIN location ON listing.locationid=location.locationid`,
 		[req.params.id],
 		(err, results) => {
