@@ -79,7 +79,7 @@ async function addNewListing(data, req, res){
         insertIds = await insertLocation(locationSql, locationValues, insertIds)
 
         var listingSql = 'INSERT INTO listing (buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        var listingValues = [insertIds[0], insertIds[1], insertIds[2], req.session.user[0]['username'] , data.title, data.price, data.listing_type, data.description];
+        var listingValues = [insertIds[0], insertIds[1], insertIds[2], req.session.user['username'] , data.title, data.price, data.listing_type, data.description];
        
         res = await insertListing(listingSql, listingValues)
     } catch(error) {

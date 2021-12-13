@@ -7,7 +7,7 @@ var csrf = require('/myapp/routes/csrf');
 /* GET user Profile. */
 router.get('/', currSession.checkSessionStatus, csrf.csrfProtection, (req, res) => {
   var query = `SELECT * FROM user WHERE username=?`;
-  var input = [req.session.user[0]["username"]];
+  var input = [req.session.user["username"]];
   db.connection.query(query, input, (err, results) => {
     if (err) console.log('ERRN:', err.message);
     else 
@@ -35,7 +35,7 @@ router.post('/', csrf.parseForm, csrf.csrfProtection,  (req, res) =>{
     req.body.password,
     req.body.full_name,
     req.body.phone,
-    req.session.user[0]["username"]
+    req.session.user["username"]
   ];
   db.connection.query(query, input , (err, user) => {
     //here goes to homepage

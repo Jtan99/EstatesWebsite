@@ -8,7 +8,7 @@ var csrf = require('/myapp/routes/csrf');
 /* GET new listing page. */
 router.get('/new-listing', currSession.checkSessionStatus, csrf.csrfProtection, function(req, res, next) {
     var query = `SELECT * FROM user WHERE username=?`;
-    var input = [req.session.user[0]["username"]];
+    var input = [req.session.user["username"]];
     db.connection.query(query, input, (err, rows) => {
       if(err){
         res.json({
@@ -55,7 +55,7 @@ router.get('/edit/:id', currSession.checkSessionStatus, csrf.csrfProtection, (re
       res.json({success: false});
     }
     else{
-      res.render('edit-listing', {data: data[0], username: req.session.user[0]['username'], csrfToken: req.csrfToken()});
+      res.render('edit-listing', {data: data[0], username: req.session.user['username'], csrfToken: req.csrfToken()});
     }
   });
 });
@@ -185,7 +185,7 @@ router.get("/homes/:id", function (req, res, next) {
 				res.status(404).send({ message: "Not Found" });
 			} else {
 				console.log("Results", results[0])
-          res.render("view-home-listing", { listing: results[0], API_KEY: "AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o" , username: req.session.user[0]['username']});
+          res.render("view-home-listing", { listing: results[0], API_KEY: "AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o" , username: req.session.user['username']});
 			}
 		}
     );
