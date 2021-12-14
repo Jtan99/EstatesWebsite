@@ -1,4 +1,5 @@
 - git clone https://csil-git1.cs.surrey.sfu.ca/jta118/470-proj.git
+- Git tag: final_implementation
 - run docker-compose build; docker-compose up
 - open browser and head to localhost:8080/ which will redirect users to the login page localhost:8080/login
 - Users can register for an account which gets inserted in the database for logging in
