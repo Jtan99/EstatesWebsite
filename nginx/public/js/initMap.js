@@ -14,7 +14,7 @@ function initMap() {
           position: results[0].geometry.location,
         });
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        alert("Map was not successful for the following reason: " + status);
       }
     });
   }

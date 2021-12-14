@@ -62,7 +62,7 @@ router.get('/', currSession.checkSessionStatus, (req, res) => {
       // console.log('vars', latestListings, latestLocations);
       return {result: res}
     } catch(error) {
-      console.log('rejected bitch', error);
+      console.log('rejected', error);
       return 0;
     }
   }

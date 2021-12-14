@@ -167,7 +167,7 @@ router.post('/delete-listing', csrf.parseForm, csrf.csrfProtection, (req, res) =
   res.redirect('/homepage')
 });
 
-router.get("/homes/:id", function (req, res, next) {
+router.get("/homes/:id", currSession.checkSessionStatus, function (req, res, next) {
 	db.connection.query(
 		`SELECT listing.*, building.*, property.*, location.*, user.email, user.phone
 		FROM (SELECT *
@@ -191,4 +191,8 @@ router.get("/homes/:id", function (req, res, next) {
     );
 });
 
+router.get("/roommates", currSession.checkSessionStatus, function (req, res, next) {
+  console.log("hey")
+  res.render("coming-soon", {heading: "Finding roommate feature is coming soon!", username: req.session.user['username']})
+});
 module.exports = router;
