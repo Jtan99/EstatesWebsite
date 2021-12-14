@@ -65,9 +65,19 @@ INSERT INTO user(username, email, phone, password, salt, full_name, role)
 		"admin user", "admin"
 	);
 
-INSERT INTO building(buildingid, bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(1, 1, 1, 1, "text example", 1, 'text example');
-INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(1, 1, "text example", "text example");
-INSERT INTO location(country, province_state, city, address, postal_code) VALUES("text example", "text example", "text example", "text example", "text example");
-INSERT INTO listing(buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES(1, 1, 1, 'admin', 'text example', 1, 'sale', 'text example');
+INSERT INTO building(bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(2, 3, 1500, "Apartment", 25, 'A/C, Fridge, Stove');
+INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(3, 4300, "2 Parking lot spaces", "Gym, Pool, Daycare");
+INSERT INTO location(country, province_state, city, address, postal_code) VALUES("Canada", "BC", "Burnaby", "8888 University Drive", "V5A 1S6");
+INSERT INTO listing(buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES(1, 1, 1, 'admin', 'New apartment unit at SFU', 653000, 'sale', 'New unit in floor 12 of building XXX at SFU');
+
+INSERT INTO building(bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(3, 4, 2200, "House", 2, 'A/C, Fridge, Stove');
+INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(4, 6300, "2 car garage", "Gym, Pool");
+INSERT INTO location(country, province_state, city, address, postal_code) VALUES("Canada", "BC", "Burnaby", "6363 Kitchener St", "V5B 2J4");
+INSERT INTO listing(buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES(2, 2, 2, 'admin', 'Modern Burnaby house', 1443000, 'sale', '4 bedroom 3 bath home in Burnaby');
+
+INSERT INTO building(bathrooms, bedrooms, floor_space, building_type, storeys, appliances) VALUES(2, 2, 1200, "Apartment", 25, 'A/C, Fridge, Stove');
+INSERT INTO property(property_age, annual_property_tax, parking_type, amenities) VALUES(3, 2300, "1 Parking lot space", "Gym, Pool, Daycare");
+INSERT INTO location(country, province_state, city, address, postal_code) VALUES("Canada", "BC", "Burnaby", "8888 University Drive", "V5A 1S6");
+INSERT INTO listing(buildingid, propertyid, locationid, seller_username, title, price, listing_type, description) VALUES(3, 3, 3, 'admin', 'Renting apartment unit at SFU', 2300, 'rent', 'New unit in floor 5 of building XXX at SFU for rent');
 
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
